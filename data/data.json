@@ -1,0 +1,20 @@
+{
+    "designation" :[
+        {
+            "id":1,
+            "d_name":"Senior Manager"
+        },
+        {
+            "id":2,
+            "d_name":"Junior Manager"
+        },
+        {
+            "id":3,
+            "d_name":"Developer"
+        },
+        {
+            "id":4,
+            "d_name":"Humar Resources"
+        }
+    ]
+}

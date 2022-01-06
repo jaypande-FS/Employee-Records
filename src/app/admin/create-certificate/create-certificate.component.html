@@ -1,0 +1,51 @@
+<div class="row my-5 mx-2">
+  <div class="col-md-6">
+  
+  
+  <form   #addcert="ngForm" (submit)= "submit()" >
+    
+    <div class="mb-3 row">
+      <label class="form-label col-md-8  mx-auto">Certification Name</label>
+      <input type="text" required #name="ngModel" class="form-control col-md-8 mx-auto" name="Name" [(ngModel)]= "cert.name">
+      <span style="color:red" *ngIf="name.invalid && name.touched">Enter Certification</span>
+      
+    </div>
+    <div class="row">
+  
+      <button [disabled]="addcert.invalid"  type="submit" class="btn btn-success col-md-4  mx-auto round">Add</button>
+    </div>
+    <div class="row mt-1">
+      <button  class="btn btn-info col-md-4 mx-auto round" routerLink="/">Back</button>
+    
+    </div>
+    </form>
+  </div>
+    
+  <div class="col-md-5 ">
+    <table class=" table table-hover ">
+      <thead >
+        <tr>
+          <th (click)= "sort('id')">#<i class="fa fa-fw fa-sort"></i></th>
+          <th (click)= "sort('name')">Certification Name<i class="fa fa-fw fa-sort"></i></th>
+          <th>Action</th>
+    
+        </tr>
+      </thead>
+      <tbody > 
+        <!-- For loop for employee basic Information -->
+        <tr *ngFor= "let cert of certList| async  | orderBy:key:reverse   ">
+          <td>{{cert.id}}</td>
+          <td>{{cert.name}}</td>
+          
+    
+     <!-- Action Buttons created for Viewing, updating and Deleting an Employee -->
+    
+          <td>
+            <a  class="btn btn-danger round" (click)= "delete(cert.id)">Remove</a>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </div>
+  </div>

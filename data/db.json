@@ -1,0 +1,49 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "name": "Jay Pande",
+      "phone": "7284129234",
+      "email": "jay@gmail.com",
+      "address": "Haldwani",
+      "salary": "444444",
+      "designation_id": 1
+    },
+    {
+      "name": "Dheeraj Singh",
+      "phone": "7665566542",
+      "email": "D@gmail.com",
+      "address": "delhi",
+      "salary": "12345",
+      "id": 2,
+      "designation_id": 2
+    },
+    {
+      "name": "Jahnvi Joshi",
+      "phone": "7665774663",
+      "email": "J@gmail.com",
+      "address": "Amritsar",
+      "salary": "77563",
+      "designation_id": 1,
+      "id": 3
+    },
+    {
+      "name": "Kanika Pathak",
+      "phone": "7464635271",
+      "email": "K@gmail.com",
+      "address": "Noida",
+      "salary": "76462",
+      "designation_id": 3,
+      "id": 4
+    },
+    {
+      "name": "Kajal Goswami",
+      "phone": "7467326283",
+      "email": "Kj@gmail.com",
+      "address": "Gurugaon",
+      "salary": "242322",
+      "designation_id": 3,
+      "id": 5
+    }
+  ]
+}

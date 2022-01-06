@@ -1,0 +1,54 @@
+
+
+
+<div class="row my-5 mx-2">
+<div class="col-md-6">
+
+
+<form   #adddesig="ngForm" (submit)= "submit()" >
+  
+  <div class="mb-3 row">
+    <label class="form-label col-md-8  mx-auto">Designation Name</label>
+    <input type="text" required #name="ngModel" class="form-control col-md-8 mx-auto" name="Name" [(ngModel)]= "desig.name">
+    <span style="color:red" *ngIf="name.invalid && name.touched">Enter Desgination</span>
+    
+  </div>
+  <div class="row">
+
+    <button [disabled]="adddesig.invalid"  type="submit" class="btn btn-success col-md-4  mx-auto round">Add</button>
+  </div>
+  <div class="row mt-1">
+    <button  class="btn btn-info col-md-4 mx-auto round" routerLink="/">Back</button>
+  
+  </div>
+  </form>
+</div>
+  
+<div class="col-md-5 ">
+  <table class=" table table-hover ">
+    <thead >
+      <tr>
+        <th (click)= "sort('id')">#<i class="fa fa-fw fa-sort"></i></th>
+        <th (click)= "sort('name')">Designation Name<i class="fa fa-fw fa-sort"></i></th>
+        <th>Action</th>
+  
+      </tr>
+    </thead>
+    <tbody > 
+      <!-- For loop for employee basic Information -->
+      <tr *ngFor= "let desig of desigList| async  | orderBy:key:reverse   ">
+        <td>{{desig.id}}</td>
+        <td>{{desig.name}}</td>
+        
+  
+   <!-- Action Buttons created for Viewing, updating and Deleting an Employee -->
+  
+        <td>
+          <a  class="btn btn-danger round" (click)= "delete(desig.id)">Remove</a>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+</div>
+</div>

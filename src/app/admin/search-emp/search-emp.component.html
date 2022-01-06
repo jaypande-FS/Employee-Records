@@ -1,0 +1,119 @@
+
+<form #searchForm="ngForm">
+    <div  class="row my-2 mx-auto" >
+<div class="col-lg-3">
+    <input class="form-control" type="text" name="name" [(ngModel)]= "search.name" 
+ placeholder="Enter Name">
+ </div>
+
+ <div class="col-lg-3">
+
+  <select  class="form-control" name="designation" ngModel [(ngModel)]= "search.designation" placeholder="Select Designation">
+   
+    <option *ngFor= "let designation of designationlist " [ngValue]= "designation.id" >{{designation.name}}</option>
+
+  </select>
+</div>
+
+<div class="col-lg-3">
+    <input class="form-control" type="text" name="address" [(ngModel)]= "search.address" 
+ placeholder="Enter Address">
+ </div>
+
+<div class="col-lg-3">
+    <input class="form-control" type="text" name="salary" [(ngModel)]= "search.salary" 
+ placeholder="Enter Salary">
+ </div>
+</div>
+
+<div class="row text-center mx-auto ">
+  <!-- this is the way of giving offset -->
+  <div class="col-lg-3 mx-auto my-2 " >   
+    <button (click)= "Search()" type="submit" [disabled]= "searchForm.invalid" class="btn btn-success mx-auto col round ">Search</button>
+  </div>
+</div>
+ 
+
+</form>
+
+
+
+<!-- List of searched Employees -->
+<div class="row  ">
+
+  <div class="col-md-8 my-5 ">
+     <input class="form-control offset-md-2 col-md-10 " type="text" name="searchTerm" [(ngModel)]= "searchTerm" 
+  placeholder="Enter Keyword to Search">
+  </div>
+  
+  <div class="col-md-4 ">
+   
+  
+  <label  class="form-label col my-2 text-center mr-2">Items Per Page</label>
+  
+  
+  <select (change)= "reloaddata()" class="form-control text-left col-md-3 my-1 mx-auto " name="itemsPerPage" ngModel [(ngModel)]= "itemsPerPage">
+   
+    <option value= "1" >1</option>
+    <option value= "2" >2</option>
+    <option value= "3" >3</option>
+    <option selected value= "4" >4</option>
+  
+  </select>
+  
+  </div>
+  
+  </div>
+  
+  
+  <div class="row my-0 mx-1 float-right">
+    <pagination-controls class="col " (pageChange) ="PageChange($event)"></pagination-controls>
+  </div>
+  
+  <!-- List for displaying all the Employee -->
+  <div class="row  mx-auto container my-5 ">
+    <div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th (click)= "sort('id')">#<i class="fa fa-fw fa-sort"></i></th>
+        <th (click)= "sort('name')"> Name<i class="fa fa-fw fa-sort"></i></th>
+        <th>Phone</th>
+        <th>Action</th>
+        <th>Action</th>
+        <th>Action</th>
+  
+      </tr>
+    </thead>
+    <tbody > 
+      <!-- For loop for employee basic Information -->
+      <tr class="col" *ngFor= "let employee of empList | orderBy:key:reverse| filter:searchTerm | paginate:{itemsPerPage,currentPage,totalItems}">
+        <td>{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.phone}}</td>
+  
+  
+   <!-- Action Buttons created for Viewing, updating and Deleting an Employee -->
+        <td >
+          <a (click)= "callDetail(employee.id)" class="btn btn-success round">Details</a>
+        </td>
+        <td>
+          <a (click)= "callUpdate(employee.id)" class="btn btn-primary round">Update</a>
+        </td>
+        <td>
+          <a  class="btn btn-danger round" (click)= "delete(employee.id)">Remove</a>
+        </td>
+      </tr>
+    </tbody>
+    
+  </table>
+  </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
