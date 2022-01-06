@@ -1,3 +1,4 @@
+import { CloseScrollStrategy } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute,  Router } from '@angular/router';
@@ -49,7 +50,7 @@ export class UpdateEmpComponent implements OnInit {
 
 
     this.employeeService.updateEmp(this.Id,this.emp).subscribe(data =>{ 
-    this.router.navigate(['/'])
+    this.router.navigate(['/']), console.log(data)
   }
   );
 
@@ -63,20 +64,20 @@ onChange(cert:Certificate,target:any){
 
   if(target.checked){
     this.tempList.push(cert);
-    console.log("hello temp 1" , this.tempList)
+    console.log( this.tempList)
 
   }
   else{
     let i = this.tempList.findIndex(x => x.id===cert.id); 
      //if we uncheck - cert.id:jo maine uncheck kre and x.id : jo already templist mai thi.
     this.tempList.splice(i,1);// then delete index i from templist
-    console.log("hello temp 2", this.tempList);
+    console.log( this.tempList);
   }
 }
 removeCert(cert:any){
   console.log(cert);
   let i = this.tempList.findIndex(x => x.id===cert.id); 
   this.tempList.splice(i,1);
-  console.log("hello temp 3", this.tempList);
+  console.log( this.tempList);
 }
 }

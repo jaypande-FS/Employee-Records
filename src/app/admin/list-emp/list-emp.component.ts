@@ -24,7 +24,7 @@ export class ListEmpComponent implements OnInit {
   name:any;
   searchTerm!:any;
   key!:string 
-  reverse:boolean=false;
+  reverse:boolean=true;
   p:number =1;
   currentPage:number=0;
   itemsPerPage:number=4;

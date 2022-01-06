@@ -1,47 +1,47 @@
 <!-- Form to Grab new EMPLOYEE with Validations using Templete Validations -->
-
+<div class="container">
 <div class="col ">
 <form class="my-2"  #addemp="ngForm" (submit)= "submit()">
   <div class="row">
   
-  <div class="mb-3  col-md-4 mx-auto">
-    <label class="form-label">Name</label>
+  <div class="mb-2  col-md-4 mx-auto">
+    <label class="form-label font-weight-bold ">Name</label>
     <input type="text" required #name="ngModel" class="form-control" name="Name" [(ngModel)]= "emp.name">
     <span class="text-danger" *ngIf="name.invalid && name.touched">Enter Name</span>
     
   </div>
   </div>
   <div class="row ">
-  <div class="mb-3 col-md-4 mx-auto">
-    <label  class="form-label">Phone number</label>
+  <div class="mb-2 col-md-4 mx-auto">
+    <label  class="form-label font-weight-bold ">Phone number</label>
     <input type="text" required #phone="ngModel" minlength="10" maxlength="10" class="form-control" name="Phone" [(ngModel)]= "emp.phone">
     <span class="text-danger" *ngIf="phone.invalid && phone.touched">Not a valid mobile number</span>
   </div>
 </div>
   <div class="row">
-  <div class="mb-3 col-md-4 mx-auto">
-    <label class="form-label">Email Address</label>
+  <div class="mb-2 col-md-4 mx-auto">
+    <label class="form-label font-weight-bold ">Email Address</label>
     <input type="email" required #email="ngModel" email class="form-control" name="Email" [(ngModel)]= "emp.email">
     <span class="text-danger" *ngIf="email.invalid && email.touched">Not a valid email</span>
   </div>
 </div>
 <div class="row">
-  <div class="mb-3 col-md-4 mx-auto">
-    <label class="form-label">Address</label>
+  <div class="mb-2 col-md-4 mx-auto">
+    <label class="form-label font-weight-bold ">Address</label>
     <input  type="text" required #address="ngModel" class="form-control" name="Address" [(ngModel)]= "emp.address">
     <span class="text-danger" *ngIf="address.invalid && address.touched">Enter Address</span>
   </div>
 </div>
   <div class="row">
-  <div class="mb-3 col-md-4 mx-auto">
-    <label class="form-label">Salary</label>
+  <div class="mb-2 col-md-4 mx-auto">
+    <label class="form-label font-weight-bold ">Salary</label>
     <input type="text" required #salary="ngModel" class="form-control" name="Salary" [(ngModel)]= "emp.salary">
     <span class="text-danger" *ngIf="salary.invalid && salary.touched">Enter Salary</span>
   </div>
 </div>
   <div class="row">
-    <div class="mb-3 col-md-4 mx-auto">
-  <label  class="form-label ">Designation</label>
+    <div class="mb-2 col-md-4 mx-auto">
+  <label  class="form-label font-weight-bold ">Designation</label>
   <select  class="form-control " name="designation" ngModel [(ngModel)]= "emp.designation">
    
     <option *ngFor= "let designation of designationlist | async" [ngValue]= "designation" >{{designation.name}}</option>
@@ -56,4 +56,5 @@
   <button [disabled]="addemp.invalid"  type="submit" class="btn btn-success col-md-2 mx-auto round">Add</button>
 </div>
 </form>
+</div>
 </div>

@@ -36,7 +36,7 @@ refesh(){
   
  }  
  key!:string 
- reverse:boolean=false;
+ reverse:boolean=true;
  sort(key:string){
  this.key = key;
  this.reverse=!this.reverse;

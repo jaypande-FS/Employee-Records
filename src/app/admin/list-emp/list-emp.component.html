@@ -1,18 +1,19 @@
+<div class="container">
+<div class="row my-4 gx-0">
 
-<div class="row  ">
-
-<div class="col-md-8 my-5 ">
+<div class="col-md-8 ">
    <input class="form-control offset-md-2 col-md-10 " type="text" name="searchTerm" [(ngModel)]= "searchTerm" 
 placeholder="Enter Keyword to Search">
 </div>
 
 <div class="col-md-4 ">
- 
+ <div class="row ">
+<div class="col-md-6 ">
+<label  class="form-label float-right font-weight-bold my-2 padding-0">Items Showing:</label>
 
-<label  class="form-label col my-2 text-center mr-2">Items Per Page</label>
-
-
-<select (change)= "reloaddata()" class="form-control text-left col-md-3 my-1 mx-auto " name="itemsPerPage" ngModel [(ngModel)]= "itemsPerPage">
+</div>
+<div class="col-md-4 ">
+<select (change)= "reloaddata()" class="form-control  float-left padding-0" name="itemsPerPage" ngModel [(ngModel)]= "itemsPerPage">
  
   <option value= "1" >1</option>
   <option value= "2" >2</option>
@@ -22,7 +23,8 @@ placeholder="Enter Keyword to Search">
 </select>
 
 </div>
-
+</div>
+</div>
 </div>
 
 
@@ -76,3 +78,4 @@ placeholder="Enter Keyword to Search">
 
 
 
+</div>

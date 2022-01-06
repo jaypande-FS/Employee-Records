@@ -1,71 +1,102 @@
 
 <!-- Form to update an Employee with Validations using Templete Validation -->
-
-<form #updateemp="ngForm" (submit)= "submit()">
-  <div class="mb-3">
-    <label class="form-label">Name</label>
+<div class="container my-4">
+<form  class="row " #updateemp="ngForm" (submit)= "submit()">
+  <div class="col-md-6 ">
+  <div class="col float-right ">
+  <div class="mb-3 col-md-6 float-right  ">
+    <label class="form-label font-weight-bold ">Name</label>
     <input type="text" required #name="ngModel" class="form-control" name="Name" [(ngModel)]= "emp.name">
     <span style="color:red" *ngIf="name.invalid && name.touched">Enter Name</span>
-    
   </div>
-  <div class="mb-3">
-    <label  class="form-label">Phone number</label>
+  </div>
+  <div class="col float-right">
+  <div class="mb-3 col-md-6 float-right ">
+    <label  class="form-label font-weight-bold ">Phone number</label>
     <input type="text" required #phone="ngModel" minlength="10" maxlength="10" class="form-control" name="Phone" [(ngModel)]= "emp.phone">
     <span style="color:red" *ngIf="phone.invalid && phone.touched">Not a valid mobile number</span>
   </div>
-  <div class="mb-3">
-    <label class="form-label">Email Address</label>
+</div>
+  <div class="col float-right">
+  <div class="mb-3 col-md-6 float-right">
+    <label class="form-label font-weight-bold ">Email Address</label>
     <input type="email" required #email="ngModel" email class="form-control" name="Email" [(ngModel)]= "emp.email">
     <span style="color:red" *ngIf="email.invalid && email.touched">Not a valid email</span>
   </div>
-  <div class="mb-3">
-    <label class="form-label">Address</label>
+</div>
+  <div class="col float-right">
+  <div class="mb-3 col-md-6 float-right">
+    <label class="form-label font-weight-bold ">Address</label>
     <input  type="text" required #address="ngModel" class="form-control" name="Address" [(ngModel)]= "emp.address">
     <span style="color:red" *ngIf="address.invalid && address.touched">Enter Address</span>
   </div>
-  
-  <div class="mb-3">
-    <label class="form-label">Salary</label>
-    <input type="text" required #salary="ngModel" class="form-control" name="Salary" [(ngModel)]= "emp.salary">
+</div>
+  </div>
+  <div class="col-md-6   ">
+    
+  <div class="col float-left ">
+  <div class="mb-4 col mx-auto ">
+    <label class="form-label font-weight-bold ">Salary</label>
+    <input type="text" required #salary="ngModel" class="form-control col-md-6" name="Salary" [(ngModel)]= "emp.salary">
     <span style="color:red" *ngIf="salary.invalid && salary.touched">Enter Salary</span>
   </div>
-  <div>
-    <li  style="font-weight: bold;list-style:none;padding-bottom: 10px;" class="">Your Certification: <span 
+</div>
+  <div class="col float-left ">
+  <div class="my-4 col mx-auto display-block  ">
+    <li class="list-style" > <span class="font-weight-bold">Your Certification:  </span> <span 
       *ngFor= "let temp of tempList" 
-      style="margin-left:4px;">{{emp.certificates && temp["name"]}}
-      <span class="mx-1 "><button type="button" (click) ="removeCert(temp)" 
-        class="btn-sm btn-danger fa fa-times" aria-hidden="true"></button></span> </span></li>
+      >  {{emp.certificates && temp["name"]}}
+      <span class=" "><button type="button" (click) ="removeCert(temp)" 
+        class="btn-xs btn-danger fa fa-times" aria-hidden="true"></button></span> </span></li>
   </div>
-    
-  <div style="padding-bottom: 0%;" class="dropdown">
+</div>
 
-    <button type="button" class="btn btn-default dropdown-toggle col-md-6 border border-dark text-black " data-bs-toggle="dropdown">
 
-      Add certification
+    <div class="col float-left ">
+      <div class="mb-3 mt-4 col mx-auto ">
+  <div class="dropdown ">
+
+    <button type="button" class="btn btn-dark dropdown-toggle border border-dark  col-md-6  " data-toggle="dropdown">
+
+      Add Certification
 
     </button>
 
-    <div  class="dropdown-menu">
+    <div  class="dropdown-menu col-md-6 ">
 
-       <div class="dropdown-item" *ngFor= "let certificates of certificateList | async">
+       <div class="dropdown-item " *ngFor= "let certificates of certificateList | async">
 
-        <input style="width:auto;height: auto;display:inline" type="checkbox" (change)= "onChange(certificates, $event.target)" />
+        <input class="" type="checkbox" (change)= "onChange(certificates, $event.target)" />
 
         {{ certificates.name }}
 
       </div>
     </div>
   </div>
-  <div>
-  <label  class="form-label">Designation</label>
-  <select style="margin-bottom: 10px;" class="form-select" name="designation" ngModel [(ngModel)]= "emp.designation">
+</div>
+</div>
+
+  <div class="col float-left ">
+    <div class="mb-3 mt-2 col mx-auto ">
+  <label  class="form-label font-weight-bold ">Designation</label>
+  <select style="margin-bottom: 10px;" class="form-control col-md-6" name="designation" ngModel [(ngModel)]= "emp.designation">
    
     <option *ngFor= "let designation of designationlist | async" [ngValue]= "designation" >{{designation.name}}</option>
 
   </select>
 </div>
+</div>
 
-  <button type="submit" [disabled]= "updateemp.invalid" class="btn btn-success">Update</button>
+</div>
+
+
 </form>
+<div class="row ">
+
+  <button type="submit" (click)= "submit()"  [disabled]= "updateemp.invalid" class="btn btn-success col-md-2 mx-auto round my-3">Update</button>
+
+</div>
+</div>
+
 
 

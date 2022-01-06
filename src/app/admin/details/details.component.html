@@ -1,17 +1,17 @@
 <!-- Creating List for Details -->
 
 
-<div style="margin-top:50px; margin: 0 auto;">
+<div class=" my-5">
 
-<ul style=" max-width:40%; margin: 0 auto;" class="list-group ">
+<ul class="row list-group ">
   <!-- <button style="max-width:20%" class="btn btn-info" routerLink="/">Back</button> -->
-  <li style="font-weight: bold;" class="list-group-item list-group-item-info">Name: <span style="margin-left:30px;color:green">{{emp.name}}</span></li>
-  <li style="font-weight: bold;" class="list-group-item list-group-item-info">Phone: <span style="margin-left:29px;color:green">{{emp.phone}}</span></li>
-  <li style="font-weight: bold;" class="list-group-item list-group-item-info">Email: <span style="margin-left:36px;color:green">{{emp.email}}</span></li>
-  <li style="font-weight: bold;" class="list-group-item list-group-item-info">Address: <span style="margin-left:15px;color:green">{{emp.address}}</span></li>
-  <li style="font-weight: bold;" class="list-group-item list-group-item-info">Salary: <span style="margin-left:31px;color:green">{{emp.salary}}</span></li>
-  <li style="font-weight: bold;" class="list-group-item list-group-item-info">Designation: <span style="margin-left:4px;color:green">{{emp.designation && emp.designation.name}}</span></li>
-  <li  style="font-weight: bold;" class="list-group-item list-group-item-info">Certification: <span *ngFor= "let certificate of emp.certificates" style="margin-left:4px;color:green">{{emp.certificates && certificate["name"]}}; </span></li>
+  <li style="font-weight: bold;" class="col-md-3 mx-auto list-group-item border-0 ">Name: <span style="color:green">{{emp.name}}</span></li>
+  <li style="font-weight: bold;" class="col-md-3 mx-auto list-group-item border-0 ">Phone: <span style="color:green">{{emp.phone}}</span></li>
+  <li style="font-weight: bold;" class="col-md-3 mx-auto list-group-item border-0 ">Email: <span style="color:green">{{emp.email}}</span></li>
+  <li style="font-weight: bold;" class="col-md-3 mx-auto list-group-item border-0 ">Address: <span style="color:green">{{emp.address}}</span></li>
+  <li style="font-weight: bold;" class="col-md-3 mx-auto list-group-item border-0 ">Salary: <span style="color:green">{{emp.salary}}</span></li>
+  <li style="font-weight: bold;" class="col-md-3 mx-auto list-group-item border-0 ">Designation: <span style="color:green">{{emp.designation && emp.designation.name}}</span></li>
+  <li style="font-weight: bold;" class="col-md-3 mx-auto list-group-item border-0 ">Certification: <span *ngFor= "let certificate of emp.certificates" style="margin-left:4px;color:green">{{emp.certificates && certificate["name"]}}; </span></li>
 </ul>
 </div>
 

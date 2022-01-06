@@ -19,7 +19,7 @@ export class SearchEmpComponent implements OnInit {
   searchTerm!:any;
   empList:Employee[]=[]
   key!:string 
-  reverse:boolean=false;
+  reverse:boolean=true;
   p:number =1;
   currentPage:number=0;
   itemsPerPage:number=4;
@@ -55,7 +55,8 @@ this.desigService.getAllDesig().subscribe(data=>{
         this.empList=data['content'],
         this.itemsPerPage=data['size'],
         this.totalItems=data['totalElements'],
-        this.totalPages=data['totalPages']
+        this.totalPages=data['totalPages'],
+        console.log(data)
   
       })
   }
@@ -91,6 +92,10 @@ this.desigService.getAllDesig().subscribe(data=>{
     if(this.empList.length>0){
       this.reloaddata();
     }
+  }
+
+  clean(){
+    this.Router.navigate(['/search'])
   }
 
 
