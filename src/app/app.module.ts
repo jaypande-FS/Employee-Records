@@ -10,6 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {Ng2SearchPipeModule} from 'ng2-search-filter'
 import {Ng2OrderModule} from 'ng2-order-pipe'
 import {NgxPaginationModule} from 'ngx-pagination';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { FormsModule } from '@angular/forms';
+
+registerLocaleData(en);
 
 
 
@@ -19,7 +27,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
   
   ],
   imports: [
-
+    
     BrowserModule,
     AppRoutingModule,
     AdminModule,
@@ -29,11 +37,16 @@ import {NgxPaginationModule} from 'ngx-pagination';
     Ng2SearchPipeModule,
     Ng2OrderModule,
     NgxPaginationModule,
-  
+    AutocompleteLibModule,
+    FormsModule
 
     
   ],
-  providers: [],
+  exports:[
+    AutocompleteLibModule,
+  ],
+
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

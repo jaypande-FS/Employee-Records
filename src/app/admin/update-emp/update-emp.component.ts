@@ -1,6 +1,6 @@
-import { CloseScrollStrategy } from '@angular/cdk/overlay';
+
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+
 import { ActivatedRoute,  Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Certificate } from 'src/app/certificate.model';
@@ -27,7 +27,7 @@ export class UpdateEmpComponent implements OnInit {
   cert!:Certificate;
   tempList:Certificate[]=[];
 
-  constructor(private updateDesig:DesignationService,
+  constructor(private desigService:DesignationService,
     private employeeService:EmployeeService,
     private certificationService:CertificateService,
     private route:ActivatedRoute,
@@ -36,7 +36,7 @@ export class UpdateEmpComponent implements OnInit {
 
   ngOnInit(): void {
     this.Id=this.route.snapshot.params["id"];
-    this.designationlist= this.updateDesig.getAllDesig();
+    this.designationlist= this.desigService.getAllDesig();
     this.certificateList=this.certificationService.getAllCert();
     this.getdata();
    
@@ -60,23 +60,23 @@ getdata(){
   this.employeeService.getById(this.Id).subscribe(data =>{this.emp=data,this.tempList=data.certificates} );
 }
 
-onChange(cert:Certificate,target:any){
+onCheck(cert:Certificate,target:any){
 
   if(target.checked){
     this.tempList.push(cert);
-    console.log( this.tempList)
+    console.log(this.tempList)
 
   }
   else{
-    let i = this.tempList.findIndex(x => x.id===cert.id); 
-     //if we uncheck - cert.id:jo maine uncheck kre and x.id : jo already templist mai thi.
+    let i = this.tempList.findIndex(remvCert => remvCert.id===cert.id); 
+     //if we uncheck - cert.id- jo templist mai already thi, x.id jo abhi uncheck hue, if they are equal. then,
     this.tempList.splice(i,1);// then delete index i from templist
     console.log( this.tempList);
   }
 }
 removeCert(cert:any){
   console.log(cert);
-  let i = this.tempList.findIndex(x => x.id===cert.id); 
+  let i = this.tempList.findIndex(remvCert => remvCert.id===cert.id); 
   this.tempList.splice(i,1);
   console.log( this.tempList);
 }

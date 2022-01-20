@@ -42,8 +42,9 @@
   <div class="row">
     <div class="mb-2 col-md-4 mx-auto">
   <label  class="form-label font-weight-bold ">Designation</label>
+  
   <select  class="form-control " name="designation" ngModel [(ngModel)]= "emp.designation">
-   
+    <option [ngValue]="undefined" disabled selected>Select Designation</option>
     <option *ngFor= "let designation of designationlist | async" [ngValue]= "designation" >{{designation.name}}</option>
 
   </select>

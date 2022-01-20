@@ -17,10 +17,11 @@ import { SearchPipe } from './search.pipe';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { CreateDesigComponent } from './create-desig/create-desig.component';
 import { SearchEmpComponent } from './search-emp/search-emp.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
-
-
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -33,8 +34,8 @@ import { CreateCertificateComponent } from './create-certificate/create-certific
     ErrorPageComponent,
     CreateDesigComponent,
     SearchEmpComponent,
-   
-    CreateCertificateComponent
+    CreateCertificateComponent,
+    
 
   ],
   imports: [
@@ -47,7 +48,11 @@ import { CreateCertificateComponent } from './create-certificate/create-certific
     Ng2SearchPipeModule,
     Ng2OrderModule,
     MatTableModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    AutocompleteLibModule,
+    NzTableModule,
+    NzPaginationModule
+
     
     
 

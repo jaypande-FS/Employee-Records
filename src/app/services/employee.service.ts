@@ -18,7 +18,7 @@ export class EmployeeService {
   constructor(private http:HttpClient) { }
 
   getAllEmp():Observable<any>{
-    return this.http.get(`${this.apiUrl}/`);
+    return this.http.get(`${this.apiUrl}/getall`);
   }
   createEmp(data:any):Observable<any>{
     return this.http.post(`${this.apiUrl}/`, data , { responseType: 'text' });

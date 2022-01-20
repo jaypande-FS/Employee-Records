@@ -1,3 +1,4 @@
+
 <div class="container">
 <div class="row my-4 gx-0">
 
@@ -9,7 +10,7 @@ placeholder="Enter Keyword to Search">
 <div class="col-md-4 ">
  <div class="row ">
 <div class="col-md-6 ">
-<label  class="form-label float-right font-weight-bold my-2 padding-0">Items Showing:</label>
+<label  class="form-label float-right font-weight-bold  list-style-type: none;my-2 padding-0">Items Showing:</label>
 
 </div>
 <div class="col-md-4 ">
@@ -35,11 +36,11 @@ placeholder="Enter Keyword to Search">
 <!-- List for displaying all the Employee -->
 <div class="row  mx-auto container my-5 ">
   <div class="table-responsive">
-<table class="table table-hover">
+<!-- <table   class="table table-hover">
   <thead>
     <tr>
       <th (click)= "sort('id')">#<i class="fa fa-fw fa-sort"></i></th>
-      <th (click)= "sort('name')"> Name<i class="fa fa-fw fa-sort"></i></th>
+      <th (click)= "sort('name')">Name<i class="fa fa-fw fa-sort"></i></th>
       <th>Phone</th>
       <th>Action</th>
       <th>Action</th>
@@ -48,14 +49,26 @@ placeholder="Enter Keyword to Search">
     </tr>
   </thead>
   <tbody > 
-    <!-- For loop for employee basic Information -->
+   
     <tr class="col" *ngFor= "let employee of empList | orderBy:key:reverse| filter:searchTerm | paginate:{itemsPerPage,currentPage,totalItems}">
       <td>{{employee.id}}</td>
-      <td>{{employee.name}}</td>
+      <td>{{employee.name}}
+     
+        <a  (click)= "getId(employee.id)" href="#demo{{employee.id}}" data-toggle="collapse"><i class="fa fa-plus " aria-hidden="true"></i></a>
+        
+        <div id= "demo{{employee.id}}"  class="collapse " >
+          <li style="font-weight: bold; list-style-type: none;" class=" ">Designation: <span style="color:green">{{employee.designation && employee.designation.name}}</span></li>
+          <li style="font-weight: bold; list-style-type: none;" class=" ">Email: <span style="color:green">{{employee.email}}</span></li>
+          <li style="font-weight: bold;list-style-type: none;" class=" ">Address: <span style="color:green">{{employee.address}}</span></li>
+
+   
+      </div>
+
+      </td>
       <td>{{employee.phone}}</td>
 
 
- <!-- Action Buttons created for Viewing, updating and Deleting an Employee -->
+
       <td >
         <a [routerLink]="['detail',employee.id]" class="btn btn-success round">Details</a>
       </td>
@@ -68,14 +81,51 @@ placeholder="Enter Keyword to Search">
     </tr>
   </tbody>
   
-</table>
+</table> -->
+<!-- <nz-pagination class="pagination"  [nzTotal]= "totalItems" [(nzPageIndex)]="currentPage" [(nzPageSize)]="itemsPerPage"
+(nzPageSizeChange)= "reloaddata()" (nzPageIndexChange)= "PageChange($event)">
+</nz-pagination> -->
+<nz-table #nzTable [nzData]="empList" [nzShowPagination]="false">
+  <thead>
+    <tr>
+      <th nzWidth="60px"></th>
+      <th  [nzSortFn]="sortidFn" [nzSortDirections]="sortDirectionfn">#</th>
+      <th [nzSortFn]="sortnameFn" [nzSortDirections]="sortDirectionfn">Name</th>
+      <th>Phone</th>
+      <th>Action</th>
+      <th>Action</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor= "let employee of nzTable.data |orderBy:key:reverse | filter:searchTerm | paginate:{itemsPerPage,currentPage,totalItems}"  >
+      <tr>
+        <td [nzExpand]="expandSet.has(employee.id)" (nzExpandChange)="onExpandChange(employee.id, $event)"></td>
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.phone }}</td>
+        <td >
+          <a [routerLink]="['detail',employee.id]" class="btn btn-success round">Details</a>
+        </td>
+        <td>
+          <a [routerLink]="['update',employee.id]" class="btn btn-primary round">Update</a>
+        </td>
+        <td>
+          <a  class="btn btn-danger round" (click)= "delete(employee.id)">Remove</a>
+        </td>
+      </tr>
+      <tr class="float-center" [nzExpand]="expandSet.has(employee.id)">
+        <td><li style="font-weight: bold; list-style-type: none;" class=" ">&nbsp; &nbsp;Designation: <span style="color:green">{{employee.designation && employee.designation.name}} </span> &nbsp; &nbsp;</li></td>
+        <td><li style="font-weight: bold; list-style-type: none;" class=" ">Email: <span style="color:green">{{employee.email}}</span> &nbsp; &nbsp;</li></td>
+        <td> <li style="font-weight: bold;list-style-type: none;" class=" ">Address: <span style="color:green">{{employee.address}}</span></li></td>
+      </tr>
+     
+    </ng-container>
+  </tbody>
+</nz-table>
+
 </div>
+
+
 </div>
-
-
-
-
-
-
-
 </div>

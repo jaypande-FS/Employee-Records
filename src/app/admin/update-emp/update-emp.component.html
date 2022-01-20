@@ -66,7 +66,7 @@
 
        <div class="dropdown-item " *ngFor= "let certificates of certificateList | async">
 
-        <input class="" type="checkbox" (change)= "onChange(certificates, $event.target)" />
+        <input class="" type="checkbox" (change)= "onCheck(certificates, $event.target)" />
 
         {{ certificates.name }}
 
@@ -80,7 +80,7 @@
     <div class="mb-3 mt-2 col mx-auto ">
   <label  class="form-label font-weight-bold ">Designation</label>
   <select style="margin-bottom: 10px;" class="form-control col-md-6" name="designation" ngModel [(ngModel)]= "emp.designation">
-   
+   <option [ngValue]= " emp.designation" disabled  selected>{{emp.designation && emp.designation.name}}</option>
     <option *ngFor= "let designation of designationlist | async" [ngValue]= "designation" >{{designation.name}}</option>
 
   </select>

@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import { Router } from '@angular/router';
-import { observable, Observable } from 'rxjs';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/employee.model';
-
-
-
 import { EmployeeService } from 'src/app/services/employee.service';
+
+
+
 
 
 @Component({
@@ -16,11 +14,13 @@ import { EmployeeService } from 'src/app/services/employee.service';
 })
 export class ListEmpComponent implements OnInit {
 
-  
+
 
   //List object of employe.model.ts (employee class)
-  empList!:Observable<Employee[]>;
+  empList!:Employee[];
+  emp:Employee=new Employee(); 
 
+ 
   name:any;
   searchTerm!:any;
   key!:string 
@@ -34,13 +34,22 @@ export class ListEmpComponent implements OnInit {
 
 
 
-  constructor(private employeeService: EmployeeService,
-    private router:Router) { }
+  
 
-  ngOnInit(): void {
+  constructor(private employeeService: EmployeeService,
+    private router:Router,
+    private route:ActivatedRoute,
     
+    ) { }
+
+
+    //sortNameFn = (a: Employee, b: Employee): number => a.name - b.name;
+  ngOnInit(): void {
+   
     this.reloaddata();
+    
   }
+  
 
   //Function calling Delete API from employee.service and Refersing the list.
   delete(Id:number){
@@ -53,24 +62,46 @@ export class ListEmpComponent implements OnInit {
   this.reverse=!this.reverse;
 
 }
+
 reloaddata(){
   this.employeeService.getAllEmployee(this.cpage,this.itemsPerPage).subscribe(data=>
     {
+      
       this.empList=data['content'],
       this.itemsPerPage=data['size'],
       this.totalItems=data['totalElements'],
       this.totalPages=data['totalPages']
-  
     }
     )
 }
 
-//clear nahi hua hai!!
+
 PageChange(event:any){
-  console.log(event)
+
   this.cpage=event-1; 
   this.currentPage=event; 
+  
   this.reloaddata()
-  console.warn(this.itemsPerPage)
+  
 }
+
+
+expandSet = new Set<number>();
+onExpandChange(id: number, checked: boolean): void {
+  if (checked) {
+    this.expandSet.add(id);
+    console.log(this.expandSet)
+    
+  } else {
+    this.expandSet.delete(id);
+    console.log(this.expandSet)
+  }
 }
+
+sortidFn = (a: Employee, b: Employee): number => a.id - b.id;
+
+sortnameFn = (a: Employee, b: Employee) => a.name.localeCompare(b.name);
+
+sortDirectionfn =  ['ascend', 'descend']
+}
+

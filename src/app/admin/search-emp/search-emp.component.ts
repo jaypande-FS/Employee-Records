@@ -27,6 +27,13 @@ export class SearchEmpComponent implements OnInit {
   totalPages!:number;
   cpage:number=0;
   designationlist:Designation[]=[];
+  emp:Employee=new Employee(); 
+
+  empArray:Employee[]=[]
+  keywordName:string="name";
+  keyword:string= "address";
+
+  
 
   search:Search= new Search()
 
@@ -40,7 +47,8 @@ export class SearchEmpComponent implements OnInit {
 this.desigService.getAllDesig().subscribe(data=>{
   this.designationlist=data
 })
-    
+
+
   }
   delete(Id:number){
     this.employeeService.DeleteEmp(Id).subscribe(data => {this.reloaddata()});
@@ -55,8 +63,8 @@ this.desigService.getAllDesig().subscribe(data=>{
         this.empList=data['content'],
         this.itemsPerPage=data['size'],
         this.totalItems=data['totalElements'],
-        this.totalPages=data['totalPages'],
-        console.log(data)
+        this.totalPages=data['totalPages']
+ 
   
       })
   }
@@ -95,8 +103,42 @@ this.desigService.getAllDesig().subscribe(data=>{
   }
 
   clean(){
-    this.Router.navigate(['/search'])
+    this.empList=[];
+    this.search = new Search();
   }
 
+    selectName(data:any) {
+      console.log(data)
+      this.search.name=data
+   
+ 
+    }
+    selectAddress(data:any){
+      console.log(data)
+      this.search.address=data;
+    }
+   
+  
+    onChangeSearch(search: string) {
+      this.employeeService.getAllEmp().subscribe(data =>{this.empArray=data} ) 
+    }
+  
+    onFocused(e:any) {
+   
+    }
 
+    expandSet = new Set<number>();
+onExpandChange(id: number, checked: boolean): void {
+  if (checked) {
+    this.expandSet.add(id);
+  } else {
+    this.expandSet.delete(id);
+  }
+
+}
+sortidFn = (a: Employee, b: Employee): number => a.id - b.id;
+
+sortnameFn = (a: Employee, b: Employee) => a.name.localeCompare(b.name);
+
+sortDirectionfn =  ['ascend', 'descend']
 }
